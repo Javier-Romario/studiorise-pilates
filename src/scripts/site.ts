@@ -46,10 +46,12 @@ function updateParallax() {
     const section = el.closest('.p-section');
     if (!section) continue;
     const progress = sectionProgress(section);
-    // media is 160% tall with top:-30%. Translating it DOWN relative to the
-    // section makes the image lag behind — it goes up slower than the text.
-    const lag = progress * 0.3 * vh;
-    el.style.transform = `translate3d(0, ${lag}px, 0)`;
+    // Les Lignes / Showit parallax — background scrolls at 50% speed:
+    //   translateY = (scrollY - blockTop) * pSpeed  ≡  (progress - 0.5) * vh
+    // with pSpeed = 0.5. Media is 200% tall (top -50%) so it never exposes
+    // an edge as it travels ±0.5vh through the viewport.
+    const y = (progress - 0.5) * vh;
+    el.style.transform = `translate3d(0, ${y}px, 0)`;
   }
 }
 

@@ -87,7 +87,7 @@ reusable and makes adding sections mechanical.
 
 ### Parallax (full-page scroll)
 - Every section is `height: 100vh` / `100dvh` (`.p-section`).
-- Inside, `.p-media` is `160%` tall, positioned `top: -30%`, and holds the
+- Inside, `.p-media` is `200%` tall, positioned `top: -50%`, and holds the
   `<img>`/`<video>` (`object-fit: cover`).
 - `src/scripts/site.ts` computes each section's scroll **progress**:
 
@@ -96,9 +96,10 @@ reusable and makes adding sections mechanical.
             → 0 when entering, 0.5 when centred, 1 when leaving
   ```
 
-- The media is translated **down** relative to the section by `progress × 30vh`,
-  so the image scrolls up **slower than the text** — the classic parallax lag.
-  Because the layer is 160% tall it always covers the section.
+- The media is translated by `(progress - 0.5) × 100vh` — exactly the
+  Les Lignes / Showit formula `translateY = (scrollY - blockTop) × 0.5` — so the
+  background scrolls at **50% speed** (image rises half as fast as the text).
+  Because the layer is 200% tall it never exposes an edge over its ±0.5vh travel.
 
 ### Top bar (transparent → solid)
 - `.topbar` is `position: fixed` and transparent by default.

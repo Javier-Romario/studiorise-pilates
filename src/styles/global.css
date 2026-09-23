@@ -326,10 +326,10 @@ h3 {
 /* media layer — taller than the section so it can travel without gaps */
 .p-media {
   position: absolute;
-  top: -30%;
+  top: -50%;
   left: 0;
   width: 100%;
-  height: 160%;
+  height: 200%;
   z-index: var(--z-media);
   will-change: transform;
   transform: translate3d(0, 0, 0);
