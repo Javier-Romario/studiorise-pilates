@@ -74,6 +74,20 @@ publishes `dist/` to GitHub Pages.
 
 ---
 
+## Booking (Glofox)
+
+The site has a ready-made booking section (`#book`) for the **Glofox** widget.
+Glofox generates a small iframe embed from its Website Integration Builder.
+
+1. Open https://glofox-website-integration.web.app/
+2. Enter the studio's **Branch ID** and generate the **Class Schedule** widget.
+3. Copy the generated iframe's `src` (the URL).
+4. Paste it into `booking.glofox.src` in `src/data/content.json` (or via `/admin`).
+
+Until then the section shows a friendly "booking being connected" placeholder.
+
+---
+
 ## Placeholders to confirm before launch
 
 These came from public sources and should be verified with the owner:
@@ -86,6 +100,7 @@ These came from public sources and should be verified with the owner:
 | Instagram | @studiorisepilates | Handle to confirm |
 | Phone | (omitted) | No reliable number found — add when known |
 | Hours | "Seven days a week" | Replace with real schedule |
+| Glofox widget | not connected | Paste iframe `src` → `booking.glofox.src` |
 
 ---
 

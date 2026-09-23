@@ -92,6 +92,14 @@ export interface Visit {
   media: MediaRef;
 }
 
+export interface Booking {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  glofox: { src: string; height: number };
+}
+
 export interface Footer {
   blurb: string;
   hours: { label: string; text: string }[];
@@ -107,5 +115,6 @@ export interface SiteContent {
   classes: Classes;
   words: Words;
   visit: Visit;
+  booking: Booking;
   footer: Footer;
 }

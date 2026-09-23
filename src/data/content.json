@@ -11,14 +11,14 @@
   "nav": [
     { "label": "Method", "href": "#method" },
     { "label": "Classes", "href": "#classes" },
-    { "label": "Studio", "href": "#studio" },
+    { "label": "Book", "href": "#book" },
     { "label": "Visit", "href": "#visit" }
   ],
   "hero": {
     "eyebrow": "Reformer Pilates · Rugby & Hinckley",
     "titleLines": ["Elevate your body,", "empower your mind"],
     "subtitle": "A boutique Reformer Pilates studio where intimate classes of four and expert, personal coaching help you reconnect, realign and grow stronger.",
-    "primaryCta": { "label": "Book a class", "href": "#visit" },
+    "primaryCta": { "label": "Book a class", "href": "#book" },
     "secondaryCta": { "label": "Discover the method", "href": "#method" },
     "media": { "type": "video", "src": "/media/hero.mp4", "poster": "/media/hero-poster.jpg" }
   },
@@ -68,6 +68,16 @@
     ],
     "cta": { "label": "Email the studio", "href": "mailto:info@studiorisepilates.com" },
     "media": { "type": "image", "src": "/media/visit.jpg", "alt": "Reformer machines in a modern Pilates studio" }
+  },
+  "booking": {
+    "id": "book",
+    "eyebrow": "Book a class",
+    "heading": "Book your reformer",
+    "intro": "View the live timetable and book your next class — powered by Glofox.",
+    "glofox": {
+      "src": "",
+      "height": 820
+    }
   },
   "footer": {
     "blurb": "Reformer Pilates in Rugby & Hinckley. Small classes, expert coaching, body and mind together.",

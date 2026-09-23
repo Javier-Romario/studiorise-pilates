@@ -51,6 +51,7 @@ HelenaSite/
 │   │   ├── Classes.astro          # section 3 (video)
 │   │   ├── Words.astro            # section 4 (image, disappearing text)
 │   │   ├── Visit.astro            # section 5 (image, locations)
+│   │   ├── Booking.astro          # Glofox widget section (non-parallax)
 │   │   └── Footer.astro
 │   └── pages/
 │       ├── index.astro      # composes the 5 sections in order
@@ -111,6 +112,15 @@ reusable and makes adding sections mechanical.
   and fades each word in, holds it, then **dissolves** it (opacity + upward
   translate + blur) as the next word takes over.
 - `prefers-reduced-motion` shows the first word statically.
+
+### Glofox booking widget (`Booking.astro`)
+- Renders an `<iframe>` whose `src` comes from `content.json` → `booking.glofox.src`
+  (editable in `/admin`).
+- If `src` is empty (or still a placeholder), it shows a friendly "booking being
+  connected" note instead of a broken frame.
+- To enable it: open https://glofox-website-integration.web.app/ , enter the
+  studio's **Branch ID**, generate the **Class Schedule** widget, and paste the
+  generated iframe's `src` (the URL) into `booking.glofox.src`.
 
 ### Mini-CMS (`/admin`)
 - Loads `content.json` raw, presents a JSON editor, and offers:

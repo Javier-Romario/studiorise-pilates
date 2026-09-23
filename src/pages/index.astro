@@ -6,12 +6,13 @@ import Method from '../components/Method.astro';
 import Classes from '../components/Classes.astro';
 import Words from '../components/Words.astro';
 import Visit from '../components/Visit.astro';
+import Booking from '../components/Booking.astro';
 import Footer from '../components/Footer.astro';
 import { content } from '../lib/content';
 ---
 
 <Base title={`${content.meta.fullName} — ${content.meta.tagline}`} description={content.hero.subtitle}>
-  <TopBar brand={content.meta.siteName} nav={content.nav} cta={{ label: 'Book a class', href: '#visit' }} />
+  <TopBar brand={content.meta.siteName} nav={content.nav} cta={{ label: 'Book a class', href: '#book' }} />
 
   <main>
     <Hero data={content.hero} />
@@ -20,6 +21,8 @@ import { content } from '../lib/content';
     <Words data={content.words} />
     <Visit data={content.visit} />
   </main>
+
+  <Booking data={content.booking} />
 
   <Footer
     meta={content.meta}
