@@ -1,0 +1,19 @@
+---
+import ParallaxSection from './ParallaxSection.astro';
+import type { Words } from '../lib/types';
+
+interface Props {
+  data: Words;
+}
+
+const { data } = Astro.props;
+---
+
+<ParallaxSection id={data.id} media={data.media} className="words">
+  <p class="eyebrow words__eyebrow" style="color: var(--almond)">{data.eyebrow}</p>
+  <div class="words__stage">
+    {data.words.map((word) => (
+      <span class="words__item" data-word>{word}</span>
+    ))}
+  </div>
+</ParallaxSection>

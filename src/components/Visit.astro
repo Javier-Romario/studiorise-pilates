@@ -1,0 +1,29 @@
+---
+import ParallaxSection from './ParallaxSection.astro';
+import type { Visit } from '../lib/types';
+
+interface Props {
+  data: Visit;
+}
+
+const { data } = Astro.props;
+---
+
+<ParallaxSection id={data.id} media={data.media}>
+  <p class="eyebrow">{data.eyebrow}</p>
+  <h2 class="section-heading">{data.heading}</h2>
+  <p class="section-lead">{data.subtitle}</p>
+
+  <div class="visit__locations">
+    {data.locations.map((loc) => (
+      <div class="location-card">
+        <h3>{loc.name}</h3>
+        {loc.address.map((line) => <p>{line}</p>)}
+      </div>
+    ))}
+  </div>
+
+  <div class="visit__cta">
+    <a class="btn btn--solid" href={data.cta.href}>{data.cta.label}</a>
+  </div>
+</ParallaxSection>

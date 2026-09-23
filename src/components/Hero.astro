@@ -1,0 +1,29 @@
+---
+import ParallaxSection from './ParallaxSection.astro';
+import type { Hero as HeroData } from '../lib/types';
+
+interface Props {
+  data: HeroData;
+}
+
+const { data } = Astro.props;
+---
+
+<ParallaxSection id="hero" media={data.media} className="hero">
+  <p class="eyebrow reveal reveal-1">{data.eyebrow}</p>
+  <h1 class="hero__title reveal reveal-2">
+    {data.titleLines[0]}<br />
+    <span class="accent">{data.titleLines[1]}</span>
+  </h1>
+  <p class="hero__subtitle reveal reveal-3">{data.subtitle}</p>
+
+  <div class="hero__ctas reveal reveal-4">
+    <a class="btn btn--solid" href={data.primaryCta.href}>{data.primaryCta.label}</a>
+    <a class="btn btn--ghost" href={data.secondaryCta.href}>{data.secondaryCta.label}</a>
+  </div>
+
+  <div class="hero__scroll-hint reveal reveal-5" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="line"></div>
+  </div>
+</ParallaxSection>

@@ -1,0 +1,34 @@
+---
+import { asset } from '../lib/base';
+import type { MediaRef } from '../lib/types';
+
+interface Props {
+  id?: string;
+  media: MediaRef;
+  overlay?: boolean;
+  /** light content colour (espresso text) instead of chalk */
+  light?: boolean;
+  className?: string;
+}
+
+const { id, media, overlay = true, light = false, className = '' } = Astro.props;
+
+const src = asset(media.src);
+const poster = media.poster ? asset(media.poster) : undefined;
+---
+
+<section class:list={['p-section', className]} id={id}>
+  <div class="p-media" data-parallax>
+    {
+      media.type === 'video' ? (
+        <video src={src} poster={poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      ) : (
+        <img src={src} alt={media.alt ?? ''} loading="lazy" decoding="async" />
+      )
+    }
+  </div>
+  {overlay && <div class="p-overlay"></div>}
+  <div class:list={['p-content', { 'p-content--light': light }]}>
+    <slot />
+  </div>
+</section>

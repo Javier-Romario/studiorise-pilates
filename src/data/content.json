@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "siteName": "Studio Rise",
+    "fullName": "Studio Rise Pilates",
+    "owner": "Helena Dowling",
+    "tagline": "Elevate your body, empower your mind",
+    "email": "info@studiorisepilates.com",
+    "instagram": "@studiorisepilates",
+    "instagramUrl": "https://www.instagram.com/studiorisepilates"
+  },
+  "nav": [
+    { "label": "Method", "href": "#method" },
+    { "label": "Classes", "href": "#classes" },
+    { "label": "Studio", "href": "#studio" },
+    { "label": "Visit", "href": "#visit" }
+  ],
+  "hero": {
+    "eyebrow": "Reformer Pilates · Rugby & Hinckley",
+    "titleLines": ["Elevate your body,", "empower your mind"],
+    "subtitle": "A boutique Reformer Pilates studio where intimate classes of four and expert, personal coaching help you reconnect, realign and grow stronger.",
+    "primaryCta": { "label": "Book a class", "href": "#visit" },
+    "secondaryCta": { "label": "Discover the method", "href": "#method" },
+    "media": { "type": "video", "src": "/media/hero.mp4", "poster": "/media/hero-poster.jpg" }
+  },
+  "method": {
+    "id": "method",
+    "eyebrow": "Our method",
+    "heading": "Strength, breath & balance",
+    "body": "We blend classical and contemporary Pilates with a holistic approach that supports both body and mind. In intimate classes of just four, every session is guided, personal and built around your progress.",
+    "points": [
+      { "title": "Intimate classes of four", "text": "Personalised guidance on every reformer, every session." },
+      { "title": "Expert, personal coaching", "text": "Helena and the team coach technique, activation and control." },
+      { "title": "Body & mind, together", "text": "A calm, empowering space where your progress is our purpose." }
+    ],
+    "founderQuote": "It's more than movement — it's a calm, empowering space where your progress is our purpose.",
+    "founderName": "Helena Dowling, Founder",
+    "media": { "type": "image", "src": "/media/method.jpg", "alt": "Woman practising Reformer Pilates in a bright studio" }
+  },
+  "classes": {
+    "id": "classes",
+    "eyebrow": "Classes",
+    "heading": "Find your practice",
+    "intro": "Six signature classes, one calm, empowering space — from gentle foundations to full-strength fire.",
+    "list": [
+      { "name": "Rise Gentle Earth", "text": "A beginner-friendly welcome for those new to reformer, healing from injury, or returning to movement at a slower pace." },
+      { "name": "Rise Earth", "text": "Our foundation class for all levels — technique, muscle activation and control." },
+      { "name": "Rise Fire", "text": "Classical Pilates with a contemporary twist. Strong, dynamic, for intermediate to advanced." },
+      { "name": "Rise Core + Glutes", "text": "A contemporary class focused on core and glutes — pulses, holds and Pilates shakes." },
+      { "name": "Rise Air", "text": "A calm, meditative class for flexibility, deep stretching and breath work." },
+      { "name": "Rise Forge", "text": "Reformer precision meets kettlebell power. For experienced clients who want to be forged." }
+    ],
+    "media": { "type": "video", "src": "/media/classes.mp4", "poster": "/media/classes-poster.jpg" }
+  },
+  "words": {
+    "id": "words",
+    "eyebrow": "The rise experience",
+    "words": ["Breathe", "Align", "Strengthen", "Rise"],
+    "media": { "type": "image", "src": "/media/breathe.jpg", "alt": "Woman in calm, focused stillness on a mat" }
+  },
+  "visit": {
+    "id": "visit",
+    "eyebrow": "Visit us",
+    "heading": "Two studios. One community.",
+    "subtitle": "Book through the Studio Rise app, or drop us an email — we'd love to welcome you.",
+    "locations": [
+      { "name": "Hinckley", "address": ["43 Regent Street", "Hinckley, Leicestershire"] },
+      { "name": "Rugby", "address": ["The Independent Quarter", "Regent Street, Rugby, CV21 2PS"] }
+    ],
+    "cta": { "label": "Email the studio", "href": "mailto:info@studiorisepilates.com" },
+    "media": { "type": "image", "src": "/media/visit.jpg", "alt": "Reformer machines in a modern Pilates studio" }
+  },
+  "footer": {
+    "blurb": "Reformer Pilates in Rugby & Hinckley. Small classes, expert coaching, body and mind together.",
+    "hours": [
+      { "label": "Classes", "text": "Seven days a week" },
+      { "label": "First timers", "text": "Welcome anytime" }
+    ],
+    "contact": {
+      "email": "info@studiorisepilates.com",
+      "instagram": "@studiorisepilates"
+    },
+    "legal": "© {year} Studio Rise Pilates. Founded by Helena Dowling."
+  }
+}

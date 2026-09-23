@@ -1,0 +1,83 @@
+---
+import type { NavLink } from '../lib/types';
+
+interface Props {
+  brand: string;
+  nav: NavLink[];
+  cta: { label: string; href: string };
+}
+
+const { brand, nav, cta } = Astro.props;
+---
+
+<header class="topbar" data-topbar>
+  <a class="topbar__brand" href="#hero" aria-label={brand}>
+    {brand}
+    <span class="topbar__brand-mark">Pilates</span>
+  </a>
+
+  <nav class="topbar__nav" aria-label="Primary">
+    {nav.map((link) => (
+      <a class="topbar__link" href={link.href}>{link.label}</a>
+    ))}
+    <a class="topbar__cta" href={cta.href}>{cta.label}</a>
+  </nav>
+
+  <button class="topbar__toggle" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<style>
+  /* mobile overlay nav */
+  .topbar__nav.is-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: var(--charcoal);
+    color: var(--chalk);
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 60;
+  }
+  .topbar__nav.is-open .topbar__link {
+    font-size: 1.4rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+  .topbar__nav.is-open .topbar__cta {
+    display: inline-flex;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 680px) {
+    .topbar__nav.is-open {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const nav = document.querySelector<HTMLElement>('.topbar__nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open') ?? false;
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  nav?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) {
+      nav.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+</script>

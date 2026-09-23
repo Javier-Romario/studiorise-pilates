@@ -1,0 +1,62 @@
+---
+import type { Footer, Meta, NavLink, Location } from '../lib/types';
+import { year } from '../lib/content';
+import { asset } from '../lib/base';
+
+interface Props {
+  meta: Meta;
+  nav: NavLink[];
+  footer: Footer;
+  locations: Location[];
+}
+
+const { meta, nav, footer, locations } = Astro.props;
+const legal = footer.legal.replace('{year}', String(year));
+---
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <div class="footer__brand">{meta.siteName}</div>
+      <p class="footer__blurb">{footer.blurb}</p>
+    </div>
+
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        {nav.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+        <li><a href={asset('/admin')}>Admin</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Studios</h4>
+      <ul>
+        {locations.map((loc) => (
+          <li>
+            <a href="#visit">{loc.name}</a>
+            {loc.address.map((line) => <div class="muted">{line}</div>)}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        {footer.hours.map((h) => (
+          <li>{h.label} <span class="muted">— {h.text}</span></li>
+        ))}
+        <li><a href={`mailto:${footer.contact.email}`}>{footer.contact.email}</a></li>
+        <li><a href={meta.instagramUrl}>{footer.contact.instagram}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <span>{legal}</span>
+    <a href={asset('/admin')}>Site admin</a>
+  </div>
+</footer>

@@ -1,0 +1,426 @@
+---
+import Base from '../layouts/Base.astro';
+import rawContent from '../data/content.json?raw';
+import { content } from '../lib/content';
+import { asset } from '../lib/base';
+
+const draftKey = 'srp-content-draft';
+---
+
+<Base title="Admin — Studio Rise Pilates" description="Mini-CMS for the Studio Rise Pilates site content.">
+  <main class="admin">
+    <header class="admin__head">
+      <div>
+        <h1>Studio Rise <em>Admin</em></h1>
+        <p class="admin__sub">Mini-CMS — edits the site content in <code>src/data/content.json</code>.</p>
+      </div>
+      <div class="admin__head-actions">
+        <a class="btn btn--ghost" href={asset('/')}>View site</a>
+      </div>
+    </header>
+
+    <section class="admin__panel">
+      <h2>Content editor</h2>
+      <p class="admin__hint">
+        Edit the JSON below, then <strong>Download</strong> the file and drop it into
+        <code>src/data/content.json</code> (or use <strong>Commit to GitHub</strong> to push it straight
+        to the repo — the site rebuilds automatically).
+      </p>
+
+      <textarea id="editor" class="admin__editor" spellcheck="false" aria-label="Site content JSON"></textarea>
+      <p id="status" class="admin__status" role="status"></p>
+
+      <div class="admin__actions">
+        <button class="btn btn--solid" id="btn-download" type="button">Download JSON</button>
+        <button class="btn btn--dark" id="btn-copy" type="button">Copy JSON</button>
+        <button class="btn btn--dark" id="btn-save" type="button">Save draft</button>
+        <button class="btn btn--ghost" id="btn-load" type="button">Load draft</button>
+        <button class="btn btn--ghost" id="btn-reset" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="admin__panel">
+      <h2>Commit to GitHub</h2>
+      <p class="admin__hint">
+        Pushes the edited JSON directly to the repository using a
+        <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank" rel="noopener">fine-grained personal access token</a>
+        (repo <em>Contents: read &amp; write</em>). The token is stored only in your browser's
+        <code>localStorage</code> and sent only to <code>api.github.com</code>.
+      </p>
+
+      <div class="admin__form">
+        <label>
+          Owner / repo
+          <input id="gh-repo" type="text" placeholder="Javier-Romario/studiorise-pilates" />
+        </label>
+        <label>
+          Branch
+          <input id="gh-branch" type="text" value="main" />
+        </label>
+        <label>
+          File path
+          <input id="gh-path" type="text" value="src/data/content.json" />
+        </label>
+        <label>
+          Commit message
+          <input id="gh-msg" type="text" value="Update site content" />
+        </label>
+        <label class="admin__form-wide">
+          Personal access token
+          <input id="gh-token" type="password" placeholder="github_pat_…" autocomplete="off" />
+        </label>
+        <button class="btn btn--solid admin__form-wide" id="btn-commit" type="button">Commit &amp; push</button>
+      </div>
+    </section>
+
+    <section class="admin__panel">
+      <h2>What's editable</h2>
+      <div class="admin__help">
+        <p>Everything below lives in <code>src/data/content.json</code> and drives the homepage:</p>
+        <ul>
+          <li><code>meta</code> — site name, owner, email, Instagram</li>
+          <li><code>nav</code> — top-bar links</li>
+          <li><code>hero</code> — headline, subtitle, buttons, hero video/image</li>
+          <li><code>method</code> — "Our method" copy, three points, founder quote</li>
+          <li><code>classes</code> — the six class cards</li>
+          <li><code>words</code> — the disappearing words ("Breathe / Align / …")</li>
+          <li><code>visit</code> — Rugby &amp; Hinckley locations + CTA</li>
+          <li><code>footer</code> — blurb, hours, legal line</li>
+        </ul>
+        <p class="admin__hint">
+          Full schema and instructions for adding new sections: see
+          <code>docs/ARCHITECTURE.md</code>.
+        </p>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<script define:vars={{ defaultJson: rawContent, draftKey, defaultSiteName: content.meta.fullName }}>
+  const editor = document.getElementById('editor') as HTMLTextAreaElement;
+  const statusEl = document.getElementById('status') as HTMLParagraphElement;
+
+  const defaults = defaultJson;
+
+  function loadEditor(text: string) {
+    editor.value = text;
+  }
+
+  function readEditor(): string {
+    return editor.value;
+  }
+
+  function setStatus(msg: string, ok = true) {
+    statusEl.textContent = msg;
+    statusEl.style.color = ok ? 'var(--almond)' : '#e08a7a';
+    if (msg) {
+      window.setTimeout(() => {
+        if (statusEl.textContent === msg) statusEl.textContent = '';
+      }, 4000);
+    }
+  }
+
+  function validate(): object | null {
+    try {
+      const parsed = JSON.parse(readEditor());
+      if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+        throw new Error('Top-level value must be an object');
+      }
+      return parsed;
+    } catch (err) {
+      setStatus(`Invalid JSON — ${(err as Error).message}`, false);
+      return null;
+    }
+  }
+
+  // Unicode-safe base64 (handles em dashes, accented chars, etc.)
+  function toBase64(text: string): string {
+    const bytes = new TextEncoder().encode(text);
+    let binary = '';
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return btoa(binary);
+  }
+
+  function download() {
+    const data = validate();
+    if (!data) return;
+    const blob = new Blob([JSON.stringify(data, null, 2) + '\n'], {
+      type: 'application/json',
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'content.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    setStatus('Downloaded content.json');
+  }
+
+  async function copy() {
+    if (!validate()) return;
+    try {
+      await navigator.clipboard.writeText(readEditor());
+      setStatus('Copied to clipboard');
+    } catch {
+      editor.select();
+      setStatus('Select all + copy manually', false);
+    }
+  }
+
+  function saveDraft() {
+    if (!validate()) return;
+    localStorage.setItem(draftKey, readEditor());
+    setStatus('Draft saved in this browser');
+  }
+
+  function loadDraft() {
+    const draft = localStorage.getItem(draftKey);
+    if (draft) {
+      loadEditor(draft);
+      setStatus('Draft loaded');
+    } else {
+      setStatus('No saved draft found', false);
+    }
+  }
+
+  function reset() {
+    loadEditor(defaults);
+    setStatus('Reset to site default');
+  }
+
+  async function commit() {
+    const data = validate();
+    if (!data) return;
+
+    const repo = (document.getElementById('gh-repo') as HTMLInputElement).value.trim();
+    const branch = (document.getElementById('gh-branch') as HTMLInputElement).value.trim() || 'main';
+    const path = (document.getElementById('gh-path') as HTMLInputElement).value.trim() || 'src/data/content.json';
+    const message = (document.getElementById('gh-msg') as HTMLInputElement).value.trim() || 'Update site content';
+    const token = (document.getElementById('gh-token') as HTMLInputElement).value.trim();
+
+    if (!repo || !token) {
+      setStatus('Repo and personal access token are required', false);
+      return;
+    }
+
+    const [owner, name] = repo.split('/');
+    if (!owner || !name) {
+      setStatus('Repo must be in the form owner/repo', false);
+      return;
+    }
+
+    const headers: Record<string, string> = {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    };
+
+    const btn = document.getElementById('btn-commit') as HTMLButtonElement;
+    btn.disabled = true;
+    setStatus('Pushing…');
+
+    try {
+      // fetch current file to obtain its sha (needed to update an existing file)
+      let sha: string | undefined;
+      const existing = await fetch(
+        `https://api.github.com/repos/${owner}/${name}/contents/${path}?ref=${branch}`,
+        { headers },
+      );
+      if (existing.ok) {
+        const info = await existing.json();
+        sha = info.sha;
+      } else if (existing.status !== 404) {
+        throw new Error(`GitHub GET failed (${existing.status})`);
+      }
+
+      const body: Record<string, unknown> = {
+        message,
+        content: toBase64(JSON.stringify(data, null, 2) + '\n'),
+        branch,
+      };
+      if (sha) body.sha = sha;
+
+      const res = await fetch(`https://api.github.com/repos/${owner}/${name}/contents/${path}`, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify(body),
+      });
+
+      if (res.ok) {
+        setStatus('Committed — GitHub Pages will rebuild the site');
+      } else {
+        const err = await res.json().catch(() => ({}));
+        throw new Error((err as { message?: string }).message ?? `PUT failed (${res.status})`);
+      }
+    } catch (err) {
+      setStatus(`Commit failed — ${(err as Error).message}`, false);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // wire up
+  document.getElementById('btn-download')!.addEventListener('click', download);
+  document.getElementById('btn-copy')!.addEventListener('click', copy);
+  document.getElementById('btn-save')!.addEventListener('click', saveDraft);
+  document.getElementById('btn-load')!.addEventListener('click', loadDraft);
+  document.getElementById('btn-reset')!.addEventListener('click', reset);
+  document.getElementById('btn-commit')!.addEventListener('click', commit);
+
+  // init: prefer saved draft, else site default
+  const draft = localStorage.getItem(draftKey);
+  loadEditor(draft ?? defaults);
+</script>
+
+<style>
+  .admin {
+    min-height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem) 6rem;
+    color: var(--chalk);
+  }
+
+  .admin__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  .admin__head h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--chalk);
+  }
+  .admin__head h1 em {
+    font-style: italic;
+    color: var(--almond);
+  }
+  .admin__sub {
+    margin-top: 0.4rem;
+    color: rgba(254, 250, 241, 0.6);
+    font-size: 0.9rem;
+  }
+  .admin__sub code,
+  .admin__hint code,
+  .admin__help code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.85em;
+    color: var(--almond);
+    background: rgba(254, 250, 241, 0.08);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  .admin__head-actions .btn {
+    color: var(--chalk);
+  }
+
+  .admin__panel {
+    background: rgba(254, 250, 241, 0.04);
+    border: 1px solid rgba(254, 250, 241, 0.12);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 1.5rem;
+  }
+  .admin__panel h2 {
+    font-size: 1.4rem;
+    color: var(--chalk);
+    margin-bottom: 0.5rem;
+  }
+
+  .admin__hint {
+    color: rgba(254, 250, 241, 0.62);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    max-width: 60rem;
+  }
+  .admin__hint a {
+    color: var(--almond);
+    text-decoration: underline;
+  }
+
+  .admin__editor {
+    width: 100%;
+    min-height: 420px;
+    resize: vertical;
+    background: #120e0b;
+    color: #efe6d6;
+    border: 1px solid rgba(254, 250, 241, 0.18);
+    border-radius: 6px;
+    padding: 1.25rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    tab-size: 2;
+  }
+  .admin__editor:focus {
+    outline: none;
+    border-color: var(--almond);
+  }
+
+  .admin__status {
+    min-height: 1.4em;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .admin__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .admin__actions .btn--ghost {
+    color: var(--chalk);
+  }
+
+  .admin__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .admin__form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(254, 250, 241, 0.6);
+  }
+  .admin__form input {
+    padding: 0.8em 1em;
+    background: #120e0b;
+    border: 1px solid rgba(254, 250, 241, 0.18);
+    border-radius: 6px;
+    color: var(--chalk);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+  }
+  .admin__form input:focus {
+    outline: none;
+    border-color: var(--almond);
+  }
+  .admin__form-wide {
+    grid-column: 1 / -1;
+  }
+
+  .admin__help ul {
+    margin: 1rem 0 0.5rem 1.25rem;
+    color: rgba(254, 250, 241, 0.78);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+  .admin__help .admin__hint {
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 680px) {
+    .admin__form {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
