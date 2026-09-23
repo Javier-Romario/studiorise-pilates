@@ -54,34 +54,24 @@ function updateParallax() {
 
 function updateWords() {
   if (!wordsSection || wordEls.length === 0) return;
-  const progress = sectionProgress(wordsSection);
   const n = wordEls.length;
-  const t = progress * n; // continuous position across the word list
+  const progress = sectionProgress(wordsSection);
+  const idx = progress * (n - 1); // continuous index 0..n-1
 
   wordEls.forEach((el, i) => {
-    const local = t - i; // 0 = word's turn starts, 1 = word's turn ends
+    const d = idx - i; // -1 = entering, 0 = centred, +1 = leaving
     let opacity = 0;
-    let y = 0;
-    let blur = 0;
-
-    if (local >= 0 && local <= 1) {
-      const fadeIn = smoothstep(0, 0.3, local);
-      const fadeOut = 1 - smoothstep(0.62, 1, local);
-      opacity = Math.min(fadeIn, fadeOut);
-      const leaving = 1 - fadeOut; // 0 -> 1 as the word dissolves
-      y = -leaving * 60;
-      blur = leaving * 7;
+    if (d > -1 && d < 1) {
+      const raw = 1 - Math.abs(d);
+      opacity = raw * raw * (3 - 2 * raw); // smoothstep ease
     }
+    const y = d * 50; // enters from below, dissolves upward
+    const blur = (1 - opacity) * 6;
 
     el.style.opacity = String(opacity);
     el.style.transform = `translateY(${y}px)`;
     el.style.filter = blur > 0.1 ? `blur(${blur}px)` : '';
   });
-}
-
-function smoothstep(a: number, b: number, x: number): number {
-  const t = clamp01((x - a) / (b - a));
-  return t * t * (3 - 2 * t);
 }
 
 function onScroll() {
