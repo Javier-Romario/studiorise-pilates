@@ -298,8 +298,9 @@ h3 {
 .p-section {
   position: relative;
   height: 100vh;
+  height: 100dvh; /* dynamic viewport — fills screen on mobile without the 100vh overflow bug */
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100svh; /* floor against expanded browser chrome */
   overflow: hidden;
   isolation: isolate;
 }
@@ -544,9 +545,9 @@ h3 {
 
 .words__eyebrow {
   position: absolute;
-  top: 50%;
+  top: 18%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 2;
   pointer-events: none;
 }
@@ -712,23 +713,75 @@ h3 {
     display: none;
   }
 
-  .method__points,
-  .classes__grid,
-  .visit__locations {
-    grid-template-columns: 1fr;
+  /* full-page sections stay full-viewport (svh/dvh); content compacts and
+     scrolls within the section if it overflows on very short screens */
+  .p-content {
+    justify-content: safe center;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 5.5rem 1.25rem 2rem;
   }
 
-  /* let content breathe on small screens */
-  .p-section {
-    height: auto;
-    min-height: 100svh;
+  .hero__title {
+    font-size: clamp(2.6rem, 13vw, 4.4rem);
   }
-  .p-media {
-    height: 100%;
-    top: 0;
+  .hero__subtitle {
+    font-size: 0.95rem;
+  }
+  .section-heading {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+  .section-lead {
+    font-size: 0.94rem;
+  }
+
+  .method__points {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    margin-top: 1.75rem;
+  }
+  .method__point {
+    padding-top: 1rem;
+  }
+  .method__point h3 {
+    font-size: 1.15rem;
+  }
+  .method__point p {
+    font-size: 0.82rem;
+  }
+  .method__quote {
+    font-size: 1.05rem;
+    margin-top: 1.75rem;
+  }
+
+  .classes__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
   }
   .class-card {
-    padding: 1.1rem 1.2rem;
+    padding: 0.85rem;
+  }
+  .class-card h3 {
+    font-size: 0.98rem;
+  }
+  .class-card p {
+    font-size: 0.74rem;
+  }
+
+  .visit__locations {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+  .location-card {
+    padding: 1.25rem 1.4rem;
+  }
+  .location-card h3 {
+    font-size: 1.4rem;
+  }
+  .visit__cta {
+    margin-top: 1.75rem;
   }
 }
 
