@@ -101,6 +101,22 @@ reusable and makes adding sections mechanical.
   background scrolls at **50% speed** (image rises half as fast as the text).
   Because the layer is 200% tall it never exposes an edge over its ±0.5vh travel.
 
+### Scroll snapping
+- `html` has `scroll-snap-type: y proximity` — gentle, so the tall booking
+  widget and footer still scroll freely.
+- Every `.p-section` is `scroll-snap-align: start` + `scroll-snap-stop: always`,
+  making each full page a distinct scroll stop.
+- `.booking` also snaps to `start`. Snapping is disabled under
+  `prefers-reduced-motion`. (For forced snapping, switch `proximity` →
+  `mandatory` in `global.css`.)
+
+### Responsive viewport units
+- Sections use `height: 100vh` with a `100dvh` override and `min-height: 100svh`,
+  so the full-page effect survives mobile browser chrome (no `100vh` overflow).
+- ≤680px: content compacts (classes → 2-col, method/visit → 1-col) and
+  `.p-content` becomes `overflow-y: auto` with `justify-content: safe center`,
+  so a section scrolls internally if it outgrows the viewport.
+
 ### Top bar (transparent → solid)
 - `.topbar` is `position: fixed` and transparent by default.
 - `site.ts` toggles `.is-solid` when `scrollY > viewportHeight - 80` (i.e. once
@@ -109,9 +125,9 @@ reusable and makes adding sections mechanical.
 
 ### Disappearing words (`Words.astro`, section 4)
 - The section holds N absolutely-stacked words (`[data-word]`).
-- `site.ts` maps the section progress to a continuous index `t = progress × N`
-  and fades each word in, holds it, then **dissolves** it (opacity + upward
-  translate + blur) as the next word takes over.
+- `site.ts` maps the section progress to a continuous index
+  `idx = progress × (N − 1)` and crossfades each word in, holds it, then
+  **dissolves** it (opacity + upward translate + blur) as the next word takes over.
 - `prefers-reduced-motion` shows the first word statically.
 
 ### Glofox booking widget (`Booking.astro`)

@@ -22,16 +22,19 @@ npm run preview # serve the build locally
 
 ## Features
 
-- **5 full-screen sections** with up-to-down parallax (media translates one
-  viewport per full scroll).
+- **5 full-screen sections** with Les Lignes-style parallax — background
+  scrolls at 50% speed — plus **CSS scroll snapping** (one page per stop).
 - **Hero video background** (self-hosted), later sections use images and a
   second video.
 - **Transparent → solid top bar** once you scroll past the first full page.
 - **Disappearing text** section — "Breathe / Align / Strengthen / Rise" fade in
   and dissolve away as you scroll.
+- **Responsive viewport units** (`svh`/`dvh`) so the full-page effect works on
+  mobile.
 - **Professional footer** with nav, studios, hours and contact.
 - **Mini-CMS** at `/admin` — edit `src/data/content.json` in the browser and
   push straight to GitHub (no server needed).
+- **Glofox booking section** ready to accept the studio's embed link.
 
 ---
 
@@ -106,8 +109,9 @@ These came from public sources and should be verified with the owner:
 
 ## Docs for future agents
 
-- `docs/ARCHITECTURE.md` — structure, data flow, parallax mechanics, adding sections
+- `docs/ARCHITECTURE.md` — structure, data flow, parallax/snap mechanics, adding sections
 - `docs/CODE_STANDARDS.md` — conventions, tokens, accessibility, commit norms
+- `docs/CHANGELOG.md` — full history of what was built and why
 
 ---
 
