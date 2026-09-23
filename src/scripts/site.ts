@@ -2,8 +2,8 @@
  * Studio Rise — scroll behaviour.
  *  1. Topbar: transparent over the hero, solid once you scroll past the first
  *     full page.
- *  2. Parallax: each section's background media translates up as the section
- *     scrolls through the viewport — completing one full travel per 100vh.
+ *  2. Parallax: each section's background media moves up *slower* than the
+ *     text — the classic parallax feel.
  *  3. Disappearing words: words in the `#words` section fade in, hold, then
  *     dissolve away as the section scrolls.
  */
@@ -16,10 +16,6 @@ const topbar = document.querySelector<HTMLElement>('[data-topbar]');
 
 const mediaEls = Array.from(
   document.querySelectorAll<HTMLElement>('[data-parallax]'),
-);
-
-const contentEls = Array.from(
-  document.querySelectorAll<HTMLElement>('.p-content'),
 );
 
 const wordsSection = document.getElementById('words');
@@ -50,19 +46,10 @@ function updateParallax() {
     const section = el.closest('.p-section');
     if (!section) continue;
     const progress = sectionProgress(section);
-    // media is 150% tall with top:-25% — travel 25vh up + a slow zoom in,
-    // so the background drifts and breathes as the section scrolls through.
-    const travel = progress * 0.25 * vh;
-    const scale = 1 + progress * 0.06;
-    el.style.transform = `translate3d(0, ${-travel}px, 0) scale(${scale})`;
-  }
-  for (const el of contentEls) {
-    const section = el.closest('.p-section');
-    if (!section) continue;
-    const progress = sectionProgress(section);
-    // foreground drifts the opposite way — adds depth. Zero when centred.
-    const offset = (progress - 0.5) * 0.16 * vh;
-    el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    // media is 160% tall with top:-30%. Translating it DOWN relative to the
+    // section makes the image lag behind — it goes up slower than the text.
+    const lag = progress * 0.3 * vh;
+    el.style.transform = `translate3d(0, ${lag}px, 0)`;
   }
 }
 

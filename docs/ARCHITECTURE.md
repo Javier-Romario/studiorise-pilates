@@ -86,7 +86,7 @@ reusable and makes adding sections mechanical.
 
 ### Parallax (full-page scroll)
 - Every section is `height: 100vh` / `100dvh` (`.p-section`).
-- Inside, `.p-media` is `150%` tall, positioned `top: -25%`, and holds the
+- Inside, `.p-media` is `160%` tall, positioned `top: -30%`, and holds the
   `<img>`/`<video>` (`object-fit: cover`).
 - `src/scripts/site.ts` computes each section's scroll **progress**:
 
@@ -95,11 +95,9 @@ reusable and makes adding sections mechanical.
             → 0 when entering, 0.5 when centred, 1 when leaving
   ```
 
-- The media is translated up by `progress × 25vh` **and** slowly zoomed
-  (`scale: 1 → 1.06`), while the foreground (`.p-content`) drifts the opposite
-  way by `±8vh`. Because the layer is 150% tall it always covers the section —
-  one full page of scroll = one full parallax travel. **This is the
-  "parallax goes up-to-down" effect.**
+- The media is translated **down** relative to the section by `progress × 30vh`,
+  so the image scrolls up **slower than the text** — the classic parallax lag.
+  Because the layer is 160% tall it always covers the section.
 
 ### Top bar (transparent → solid)
 - `.topbar` is `position: fixed` and transparent by default.

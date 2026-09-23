@@ -326,10 +326,10 @@ h3 {
 /* media layer — taller than the section so it can travel without gaps */
 .p-media {
   position: absolute;
-  top: -25%;
+  top: -30%;
   left: 0;
   width: 100%;
-  height: 150%;
+  height: 160%;
   z-index: var(--z-media);
   will-change: transform;
   transform: translate3d(0, 0, 0);
@@ -368,7 +368,6 @@ h3 {
   text-align: center;
   padding: clamp(1.5rem, 4vw, 4rem);
   color: var(--chalk);
-  will-change: transform;
 }
 
 .p-content--light {
