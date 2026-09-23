@@ -69,6 +69,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -321,6 +322,8 @@ h3 {
   min-height: 100svh; /* floor against expanded browser chrome */
   overflow: hidden;
   isolation: isolate;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* media layer — taller than the section so it can travel without gaps */
@@ -808,6 +811,7 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
   *,
   *::before,
