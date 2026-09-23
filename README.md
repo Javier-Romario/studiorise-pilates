@@ -45,7 +45,8 @@ npm run preview # serve the build locally
 | Almond    | `#e9c18e` |
 | Charcoal  | `#1c1713` |
 
-Display: **Instrument Serif** · Body: **Montserrat**.
+Display & body: **Garet** (geometric sans, self-hosted) — Book `400` for body/UI,
+Heavy `800` for headings.
 
 ---
 
@@ -99,3 +100,4 @@ These came from public sources and should be verified with the owner:
 
 - Videos: [Mixkit](https://mixkit.co) (free license)
 - Images: [Pexels](https://pexels.com) (free license)
+- Font: [Garet](https://www.dafont.com/garet.font) by Type Forward Foundry (100% free)

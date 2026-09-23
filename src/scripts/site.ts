@@ -18,6 +18,10 @@ const mediaEls = Array.from(
   document.querySelectorAll<HTMLElement>('[data-parallax]'),
 );
 
+const contentEls = Array.from(
+  document.querySelectorAll<HTMLElement>('.p-content'),
+);
+
 const wordsSection = document.getElementById('words');
 const wordEls = Array.from(
   wordsSection?.querySelectorAll<HTMLElement>('[data-word]') ?? [],
@@ -46,9 +50,19 @@ function updateParallax() {
     const section = el.closest('.p-section');
     if (!section) continue;
     const progress = sectionProgress(section);
-    // media is 140% tall with top:-20% — travel 20vh up and it still covers.
-    const travel = progress * 0.2 * vh;
-    el.style.transform = `translate3d(0, ${-travel}px, 0)`;
+    // media is 150% tall with top:-25% — travel 25vh up + a slow zoom in,
+    // so the background drifts and breathes as the section scrolls through.
+    const travel = progress * 0.25 * vh;
+    const scale = 1 + progress * 0.06;
+    el.style.transform = `translate3d(0, ${-travel}px, 0) scale(${scale})`;
+  }
+  for (const el of contentEls) {
+    const section = el.closest('.p-section');
+    if (!section) continue;
+    const progress = sectionProgress(section);
+    // foreground drifts the opposite way — adds depth. Zero when centred.
+    const offset = (progress - 0.5) * 0.16 * vh;
+    el.style.transform = `translate3d(0, ${offset}px, 0)`;
   }
 }
 

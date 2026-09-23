@@ -12,7 +12,7 @@ file, so the site is editable through a built-in mini-CMS at `/admin`.
 | ---------- | ----------------------------- | --------------------------------------------------------- |
 | Framework  | Astro 5 (static)              | Zero-JS-by-default, fast, plain HTML/CSS output           |
 | Styling    | Global CSS + component styles | No UI framework; tokens in `src/styles/global.css`        |
-| Fonts      | Instrument Serif + Montserrat | Matches the Les Lignes reference aesthetic                |
+| Fonts      | Garet (self-hosted)           | Geometric sans — matches the requested Garet typeface   |
 | Media      | Local files in `public/media` | Self-hosted; no hotlinking dependency                     |
 | Content    | `src/data/content.json`       | Single source of truth; imported at build time            |
 | CMS        | `/admin` page                 | JSON editor + GitHub API commit (client-side, no server)  |
@@ -85,8 +85,8 @@ reusable and makes adding sections mechanical.
 ## 4. How the pieces work
 
 ### Parallax (full-page scroll)
-- Every section is `height: 100vh` (`.p-section`).
-- Inside, `.p-media` is `140%` tall, positioned `top: -20%`, and holds the
+- Every section is `height: 100vh` / `100dvh` (`.p-section`).
+- Inside, `.p-media` is `150%` tall, positioned `top: -25%`, and holds the
   `<img>`/`<video>` (`object-fit: cover`).
 - `src/scripts/site.ts` computes each section's scroll **progress**:
 
@@ -95,9 +95,11 @@ reusable and makes adding sections mechanical.
             → 0 when entering, 0.5 when centred, 1 when leaving
   ```
 
-- The media is translated up by `progress × 20vh`. Because the layer is 140%
-  tall, it always covers the section — one full page of scroll = one full
-  parallax travel. **This is the "parallax goes up-to-down" effect.**
+- The media is translated up by `progress × 25vh` **and** slowly zoomed
+  (`scale: 1 → 1.06`), while the foreground (`.p-content`) drifts the opposite
+  way by `±8vh`. Because the layer is 150% tall it always covers the section —
+  one full page of scroll = one full parallax travel. **This is the
+  "parallax goes up-to-down" effect.**
 
 ### Top bar (transparent → solid)
 - `.topbar` is `position: fixed` and transparent by default.
@@ -174,9 +176,10 @@ Tokens live in `:root` at the top of `src/styles/global.css`:
 | `--almond`       | `#e9c18e` | accent — buttons, hovers, highlights |
 | `--charcoal`     | `#1c1713` | dark sections, footer, body text     |
 
-Fonts are loaded in `src/layouts/Base.astro` (Google Fonts). To self-host for
-GDPR/performance, download the woff2 files into `public/fonts/` and swap the
-`<link>` for `@font-face` rules.
+Fonts are self-hosted (`src/fonts/Garet-*.woff2`) and declared as `@font-face`
+rules at the top of `src/styles/global.css` — no external font requests.
+Garet ships two weights here: **Book (400)** for body/UI and **Heavy (800)**
+for display headings.
 
 ---
 
