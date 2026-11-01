@@ -4,6 +4,21 @@ A record of everything built and changed on this project, in order. Latest first
 
 ---
 
+## 2026-10-07 — “Small by design” section + colour fallback
+
+- Second section is now **Small by design** — a plain almond section (no
+  background image) with the statement:
+  “SMALL BY DESIGN. / Small classes. Expert guidance. / Personal attention,
+  every session.”
+- `ParallaxSection.astro` `media` prop is now **optional**; added `bg`
+  (`almond` | `chalk` | `charcoal` | `brown`) for a solid colour section.
+  When both are set, the colour sits behind the media as a loading/fallback
+  colour — so every background-image section can always degrade to a colour.
+- Overlay scrim now only renders when media is present (no dark scrim over a
+  plain colour section).
+- Kept `Method.astro` + `method` content as a reusable layout template
+  (unrendered) for when the image-backed method section returns.
+
 ## 2026-09-23 — Scroll snapping
 
 - Added CSS scroll snapping to every full-page section.

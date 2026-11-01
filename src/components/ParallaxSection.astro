@@ -2,32 +2,58 @@
 import { asset } from '../lib/base';
 import type { MediaRef } from '../lib/types';
 
+type SectionBg = 'almond' | 'chalk' | 'charcoal' | 'brown';
+
 interface Props {
   id?: string;
-  media: MediaRef;
+  /** optional background media — omit to render a plain colour section */
+  media?: MediaRef;
+  /** solid colour behind media (also the only background when no media) */
+  bg?: SectionBg;
+  /** scrim for legibility over media (ignored when there is no media) */
   overlay?: boolean;
   /** light content colour (espresso text) instead of chalk */
   light?: boolean;
+  /** fit a portrait video fully (blurred cover fill + contained centre), no parallax */
+  contain?: boolean;
   className?: string;
 }
 
-const { id, media, overlay = true, light = false, className = '' } = Astro.props;
+const {
+  id,
+  media,
+  bg,
+  overlay = true,
+  light = false,
+  contain = false,
+  className = '',
+} = Astro.props;
 
-const src = asset(media.src);
-const poster = media.poster ? asset(media.poster) : undefined;
+const src = media ? asset(media.src) : undefined;
+const poster = media?.poster ? asset(media.poster) : undefined;
+const showOverlay = Boolean(media) && overlay;
 ---
 
-<section class:list={['p-section', className]} id={id}>
-  <div class="p-media" data-parallax>
-    {
-      media.type === 'video' ? (
-        <video src={src} poster={poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-      ) : (
-        <img src={src} alt={media.alt ?? ''} loading="lazy" decoding="async" />
-      )
-    }
-  </div>
-  {overlay && <div class="p-overlay"></div>}
+<section class:list={['p-section', bg && `p-section--bg-${bg}`, className]} id={id}>
+  {media && (
+    contain && media.type === 'video' ? (
+      <div class="p-media p-media--contain">
+        <video class="p-media__fill" src={src} poster={poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <video class="p-media__fit" src={src} poster={poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      </div>
+    ) : (
+      <div class="p-media" data-parallax>
+        {
+          media.type === 'video' ? (
+            <video src={src} poster={poster} autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+          ) : (
+            <img src={src} alt={media.alt ?? ''} loading="lazy" decoding="async" />
+          )
+        }
+      </div>
+    )
+  )}
+  {showOverlay && <div class="p-overlay"></div>}
   <div class:list={['p-content', { 'p-content--light': light }]}>
     <slot />
   </div>

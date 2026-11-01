@@ -47,7 +47,8 @@ HelenaSite/
 │   │   ├── ParallaxSection.astro  # reusable full-screen section (media + overlay + slot)
 │   │   ├── TopBar.astro           # transparent → solid header
 │   │   ├── Hero.astro             # section 1 (video)
-│   │   ├── Method.astro           # section 2 (image)
+│   │   ├── SmallByDesign.astro    # section 2 (plain colour — no media)
+│   │   ├── Method.astro           # layout template (kept for future use, not rendered)
 │   │   ├── Classes.astro          # section 3 (video)
 │   │   ├── Words.astro            # section 4 (image, disappearing text)
 │   │   ├── Visit.astro            # section 5 (image, locations)
@@ -87,6 +88,10 @@ reusable and makes adding sections mechanical.
 
 ### Parallax (full-page scroll)
 - Every section is `height: 100vh` / `100dvh` (`.p-section`).
+- `media` is now **optional**. Omit it and pass `bg="<token>"`
+  (`almond` | `chalk` | `charcoal` | `brown`) for a plain colour section —
+  `.p-section--bg-*` sets the background. When both `media` and `bg` are given,
+  the colour sits behind the media as its loading/fallback colour.
 - Inside, `.p-media` is `200%` tall, positioned `top: -50%`, and holds the
   `<img>`/`<video>` (`object-fit: cover`).
 - `src/scripts/site.ts` computes each section's scroll **progress**:
@@ -154,7 +159,8 @@ reusable and makes adding sections mechanical.
 1. **Add the content** to `src/data/content.json` (e.g. a `testimonials` key),
    and add a matching interface to `src/lib/types.ts`.
 2. **Create a component** `src/components/Testimonials.astro` that accepts a
-   typed `data` prop and renders inside `<ParallaxSection>`:
+   typed `data` prop and renders inside `<ParallaxSection>` (pass `bg` instead
+   of `media` for a plain colour section):
 
    ```astro
    ---

@@ -68,8 +68,8 @@ function updateWords() {
       const raw = 1 - Math.abs(d);
       opacity = raw * raw * (3 - 2 * raw); // smoothstep ease
     }
-    const y = d * 50; // enters from below, dissolves upward
-    const blur = (1 - opacity) * 6;
+    const y = d * 90; // enters from below, dissolves upward
+    const blur = (1 - opacity) * 2.5;
 
     el.style.opacity = String(opacity);
     el.style.transform = `translateY(${y}px)`;

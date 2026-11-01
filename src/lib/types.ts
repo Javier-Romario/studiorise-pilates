@@ -56,6 +56,12 @@ export interface Method {
   media: MediaRef;
 }
 
+export interface SmallByDesign {
+  id: string;
+  heading: string;
+  points: string[];
+}
+
 export interface ClassItem {
   name: string;
   text: string;
@@ -111,6 +117,7 @@ export interface SiteContent {
   meta: Meta;
   nav: NavLink[];
   hero: Hero;
+  smallByDesign: SmallByDesign;
   method: Method;
   classes: Classes;
   words: Words;

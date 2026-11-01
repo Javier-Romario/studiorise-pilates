@@ -25,10 +25,13 @@ const connected = src.length > 0 && !/replace|branch[-_ ]?id|example/i.test(src)
           <iframe
             src={src}
             title={`${data.heading} — class booking`}
+            frameborder="0"
+            width="100%"
             loading="lazy"
             style={`height: ${data.glofox.height ?? 820}px`}
           ></iframe>
         </div>
+        <a class="booking__glofox" href="https://www.glofox.com" rel="noopener">powered by <b>Glofox</b></a>
       ) : (
         <div class="booking__placeholder">
           <p class="booking__placeholder-title">Class booking is being connected.</p>
@@ -60,7 +63,7 @@ const connected = src.length > 0 && !/replace|branch[-_ ]?id|example/i.test(src)
   }
 
   .booking .section-lead {
-    color: rgba(128, 84, 64, 0.78);
+    color: rgb(var(--brown-rgb) / 0.78);
   }
 
   .booking__frame {
@@ -68,8 +71,8 @@ const connected = src.length > 0 && !/replace|branch[-_ ]?id|example/i.test(src)
     border: 1px solid var(--bone);
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 40px 80px -50px rgba(28, 23, 19, 0.45);
-    background: #fff;
+    box-shadow: 0 40px 80px -50px rgb(var(--charcoal-rgb) / 0.45);
+    background: var(--chalk);
   }
 
   .booking__frame iframe {
@@ -79,12 +82,24 @@ const connected = src.length > 0 && !/replace|branch[-_ ]?id|example/i.test(src)
     max-height: 85vh;
   }
 
+  .booking__glofox {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: rgb(var(--brown-rgb) / 0.6);
+    text-decoration: none;
+  }
+
+  .booking__glofox b {
+    font-weight: 700;
+  }
+
   .booking__placeholder {
     margin-top: 2.75rem;
     padding: 3rem 1.5rem;
     border: 1px dashed var(--almond-deep);
     border-radius: 14px;
-    color: rgba(128, 84, 64, 0.72);
+    color: rgb(var(--brown-rgb) / 0.72);
     font-size: 0.95rem;
     line-height: 1.7;
   }

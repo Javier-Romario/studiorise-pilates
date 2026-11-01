@@ -1,0 +1,19 @@
+---
+import ParallaxSection from './ParallaxSection.astro';
+import type { SmallByDesign } from '../lib/types';
+
+interface Props {
+  data: SmallByDesign;
+}
+
+const { data } = Astro.props;
+---
+
+<ParallaxSection id={data.id} bg="almond" light>
+  <h2 class="smallby__heading">{data.heading}</h2>
+  <ul class="smallby__list">
+    {data.points.map((point) => (
+      <li class="smallby__item">{point}</li>
+    ))}
+  </ul>
+</ParallaxSection>

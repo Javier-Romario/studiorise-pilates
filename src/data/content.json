@@ -3,7 +3,7 @@
     "siteName": "Studio Rise",
     "fullName": "Studio Rise Pilates",
     "owner": "Helena Dowling",
-    "tagline": "Elevate your body, empower your mind",
+    "tagline": "Here to Rise",
     "email": "info@studiorisepilates.com",
     "instagram": "@studiorisepilates",
     "instagramUrl": "https://www.instagram.com/studiorisepilates"
@@ -16,11 +16,20 @@
   ],
   "hero": {
     "eyebrow": "Reformer Pilates · Rugby & Hinckley",
-    "titleLines": ["Elevate your body,", "empower your mind"],
+    "titleLines": ["HERE. TO. RISE"],
     "subtitle": "A boutique Reformer Pilates studio where intimate classes of four and expert, personal coaching help you reconnect, realign and grow stronger.",
-    "primaryCta": { "label": "Book a class", "href": "#book" },
+    "primaryCta": { "label": "Start your rise", "href": "#book" },
     "secondaryCta": { "label": "Discover the method", "href": "#method" },
     "media": { "type": "video", "src": "/media/hero.mp4", "poster": "/media/hero-poster.jpg" }
+  },
+  "smallByDesign": {
+    "id": "method",
+    "heading": "Small by design.",
+    "points": [
+      "Small classes.",
+      "Expert guidance.",
+      "Personal attention, every session."
+    ]
   },
   "method": {
     "id": "method",
@@ -75,8 +84,8 @@
     "heading": "Book your reformer",
     "intro": "View the live timetable and book your next class — powered by Glofox.",
     "glofox": {
-      "src": "",
-      "height": 820
+      "src": "https://app.glofox.com/portal/#/branch/660ad8db10068f1f320ebe64/classes-day-view",
+      "height": 1200
     }
   },
   "footer": {
