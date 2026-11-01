@@ -612,7 +612,7 @@ h3 {
   padding: 1.3rem 1.4rem;
   background: rgb(var(--charcoal-rgb) / 0.58);
   border: 1px solid rgb(var(--chalk-rgb) / 0.24);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   transition: transform 0.4s var(--ease-out), background-color 0.4s, border-color 0.4s;
 }
 .class-card:hover {
