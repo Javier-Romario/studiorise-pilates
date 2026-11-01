@@ -12,7 +12,7 @@ file, so the site is editable through a built-in mini-CMS at `/admin`.
 | ---------- | ----------------------------- | --------------------------------------------------------- |
 | Framework  | Astro 5 (static)              | Zero-JS-by-default, fast, plain HTML/CSS output           |
 | Styling    | Global CSS + component styles | No UI framework; tokens in `src/styles/global.css`        |
-| Fonts      | Outfit (self-hosted)         | Geometric sans, warm + high x-height — variable 100–900   |
+| Fonts      | Garet (self-hosted)          | Geometric sans — Book (400) + Heavy (800)                     |
 | Media      | Local files in `public/media` | Self-hosted; no hotlinking dependency                     |
 | Content    | `src/data/content.json`       | Single source of truth; imported at build time            |
 | CMS        | `/admin` page                 | JSON editor + GitHub API commit (client-side, no server)  |
@@ -207,11 +207,10 @@ Tokens live in `:root` at the top of `src/styles/global.css`:
 | `--almond`       | `#e9c18e` | accent — buttons, hovers, highlights |
 | `--charcoal`     | `#1c1713` | dark sections, footer, body text     |
 
-Fonts are self-hosted (`src/fonts/Outfit-Variable.woff2`) and declared as `@font-face`
+Fonts are self-hosted (`src/fonts/Garet-*.woff2`) and declared as `@font-face`
 rules at the top of `src/styles/global.css` — no external font requests.
-Outfit is a variable font (`font-weight: 100 900`); the site uses **Regular (400)**
-for body/UI, **Medium (500)** for the hero title and emphasis, and
-**ExtraBold (800)** for display headings.
+Garet ships two free weights here: **Book (400)** for body/UI and **Heavy (800)**
+for display headings (including the hero title).
 
 ---
 

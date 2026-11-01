@@ -1,15 +1,22 @@
 /* ==========================================================================
    Studio Rise Pilates — global styles
    Reference aesthetic: Les Lignes Pilates (full-screen scroll parallax)
-   Type: Outfit (geometric sans, self-hosted) — variable 100–900
+   Type: Garet (geometric sans, self-hosted) — Book 400 + Heavy 800
    Palette: official Studio Rise — brown / almond / chalk / charcoal
    ========================================================================== */
 
-/* ---- Fonts (Outfit — SIL Open Font License, free for commercial use) ---- */
+/* ---- Fonts (Garet — Type Forward Foundry, 100% free) ---------------------- */
 @font-face {
-  font-family: "Outfit";
-  src: url("../fonts/Outfit-Variable.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "Garet";
+  src: url("../fonts/Garet-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("../fonts/Garet-Heavy.woff2") format("woff2");
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
@@ -38,8 +45,8 @@
   --paper: var(--chalk);
 
   /* type */
-  --font-display: "Outfit", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Garet", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Garet", "Helvetica Neue", Arial, sans-serif;
 
   /* rhythm */
   --space-1: 0.5rem;
@@ -423,7 +430,7 @@ h3 {
 /* ---- Hero ----------------------------------------------------------------- */
 .hero__title {
   font-size: clamp(2.4rem, 7vw, 6rem);
-  font-weight: 500;
+  font-weight: 800;
   line-height: 1.04;
   letter-spacing: 0.01em;
   margin: 0.4em 0 0.15em;

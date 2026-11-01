@@ -4,6 +4,15 @@ A record of everything built and changed on this project, in order. Latest first
 
 ---
 
+## 2026-11-01 — Back to Garet (final)
+
+- Reverted to **Garet** (Book 400 + Heavy 800) after testing Poppins, Jost,
+  and Outfit as free 500-weight alternatives.
+- Hero title weight set to **800 (Heavy)** — Garet has no true 500; only
+  Book (400) and Heavy (800) ship free.
+
+---
+
 ## 2026-11-01 — Outfit typeface (variable, warm geometric)
 
 - Swapped **Jost → Outfit** (SIL Open Font License) — warm geometric sans with
