@@ -1,21 +1,28 @@
 /* ==========================================================================
    Studio Rise Pilates — global styles
    Reference aesthetic: Les Lignes Pilates (full-screen scroll parallax)
-   Type: Garet (geometric sans, self-hosted) — Book + Heavy
+   Type: Poppins (geometric sans, self-hosted) — 400 / 500 / 800
    Palette: official Studio Rise — brown / almond / chalk / charcoal
    ========================================================================== */
 
-/* ---- Fonts (Garet — Type Forward Foundry, 100% free) ---------------------- */
+/* ---- Fonts (Poppins — SIL Open Font License, free for commercial use) ---- */
 @font-face {
-  font-family: "Garet";
-  src: url("../fonts/Garet-Book.woff2") format("woff2");
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Garet";
-  src: url("../fonts/Garet-Heavy.woff2") format("woff2");
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -45,8 +52,8 @@
   --paper: var(--chalk);
 
   /* type */
-  --font-display: "Garet", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Garet", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
 
   /* rhythm */
   --space-1: 0.5rem;
@@ -430,7 +437,7 @@ h3 {
 /* ---- Hero ----------------------------------------------------------------- */
 .hero__title {
   font-size: clamp(2.4rem, 7vw, 6rem);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.04;
   letter-spacing: 0.01em;
   margin: 0.4em 0 0.15em;

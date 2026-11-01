@@ -4,6 +4,18 @@ A record of everything built and changed on this project, in order. Latest first
 
 ---
 
+## 2026-11-01 — Poppins typeface (500 weight, free for commercial use)
+
+- Swapped **Garet → Poppins** (SIL Open Font License).
+- Garet only ships Book + Heavy free — Medium is personal-use-only, so the
+  desired 500 weight wasn't licensed for a commercial site.
+- Poppins is self-hosted (`src/fonts/Poppins-*.woff2`) in three weights:
+  **Regular (400)** body/UI, **Medium (500)** hero title + emphasis,
+  **ExtraBold (800)** display headings.
+- Hero title weight settled at 500.
+
+---
+
 ## 2026-10-07 — “Small by design” section + colour fallback
 
 - Second section is now **Small by design** — a plain almond section (no
