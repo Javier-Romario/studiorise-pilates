@@ -410,6 +410,16 @@ h3 {
   pointer-events: none;
 }
 
+/* stronger scrim for the classes video — dense card content needs it */
+#classes .p-overlay {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--charcoal-rgb) / 0.8) 0%,
+    rgb(var(--charcoal-rgb) / 0.55) 45%,
+    rgb(var(--charcoal-rgb) / 0.75) 100%
+  );
+}
+
 .p-content {
   position: relative;
   z-index: var(--z-content);
@@ -600,24 +610,25 @@ h3 {
 
 .class-card {
   padding: 1.3rem 1.4rem;
-  background: rgb(var(--chalk-rgb) / 0.06);
-  border: 1px solid rgb(var(--chalk-rgb) / 0.16);
-  backdrop-filter: blur(6px);
+  background: rgb(var(--charcoal-rgb) / 0.58);
+  border: 1px solid rgb(var(--chalk-rgb) / 0.24);
+  backdrop-filter: blur(12px);
   transition: transform 0.4s var(--ease-out), background-color 0.4s, border-color 0.4s;
 }
 .class-card:hover {
   transform: translateY(-4px);
-  background: rgb(var(--chalk-rgb) / 0.12);
-  border-color: rgb(var(--almond-rgb) / 0.65);
+  background: rgb(var(--charcoal-rgb) / 0.74);
+  border-color: rgb(var(--almond-rgb) / 0.75);
 }
 .class-card h3 {
   font-size: 1.18rem;
   margin-bottom: 0.35rem;
+  color: var(--chalk);
 }
 .class-card p {
   font-size: 0.82rem;
   line-height: 1.5;
-  color: rgb(var(--chalk-rgb) / 0.72);
+  color: rgb(var(--chalk-rgb) / 0.85);
 }
 
 /* ---- Disappearing words --------------------------------------------------- */
