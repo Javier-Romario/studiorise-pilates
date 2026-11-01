@@ -91,7 +91,7 @@
 }
 
 html {
-  font-size: 112.5%; /* 18px base — scales with the browser/user font setting */
+  font-size: 100%; /* respect the user's browser font-size setting */
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
   -webkit-text-size-adjust: 100%;
