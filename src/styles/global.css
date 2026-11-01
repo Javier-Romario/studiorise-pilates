@@ -1,29 +1,15 @@
 /* ==========================================================================
    Studio Rise Pilates — global styles
    Reference aesthetic: Les Lignes Pilates (full-screen scroll parallax)
-   Type: Poppins (geometric sans, self-hosted) — 400 / 500 / 800
+   Type: Jost (geometric sans, self-hosted) — variable 100–900
    Palette: official Studio Rise — brown / almond / chalk / charcoal
    ========================================================================== */
 
-/* ---- Fonts (Poppins — SIL Open Font License, free for commercial use) ---- */
+/* ---- Fonts (Jost — SIL Open Font License, free for commercial use) ------- */
 @font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-ExtraBold.woff2") format("woff2");
-  font-weight: 800;
+  font-family: "Jost";
+  src: url("../fonts/Jost-Variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -52,8 +38,8 @@
   --paper: var(--chalk);
 
   /* type */
-  --font-display: "Poppins", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Jost", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
 
   /* rhythm */
   --space-1: 0.5rem;

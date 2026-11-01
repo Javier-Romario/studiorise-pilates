@@ -4,6 +4,17 @@ A record of everything built and changed on this project, in order. Latest first
 
 ---
 
+## 2026-11-01 — Jost typeface (variable, geometric)
+
+- Swapped **Poppins → Jost** (SIL Open Font License) — Futura-like geometric,
+  closer to the original Garet character.
+- Jost is a single **variable font** (`Jost-Variable.woff2`, `font-weight: 100 900`),
+  so any weight renders natively — no faux-bold.
+- Same weight roles: **400** body/UI, **500** hero title + emphasis,
+  **800** display headings.
+
+---
+
 ## 2026-11-01 — Poppins typeface (500 weight, free for commercial use)
 
 - Swapped **Garet → Poppins** (SIL Open Font License).
