@@ -12,7 +12,7 @@ file, so the site is editable through a built-in mini-CMS at `/admin`.
 | ---------- | ----------------------------- | --------------------------------------------------------- |
 | Framework  | Astro 5 (static)              | Zero-JS-by-default, fast, plain HTML/CSS output           |
 | Styling    | Global CSS + component styles | No UI framework; tokens in `src/styles/global.css`        |
-| Fonts      | Garet (self-hosted)          | Geometric sans — Book (400) + Heavy (800)                     |
+| Fonts      | Garet (display) + Aileron (body) | Garet Book/Heavy for headings, Aileron for body/UI |
 | Media      | Local files in `public/media` | Self-hosted; no hotlinking dependency                     |
 | Content    | `src/data/content.json`       | Single source of truth; imported at build time            |
 | CMS        | `/admin` page                 | JSON editor + GitHub API commit (client-side, no server)  |
@@ -207,10 +207,13 @@ Tokens live in `:root` at the top of `src/styles/global.css`:
 | `--almond`       | `#e9c18e` | accent — buttons, hovers, highlights |
 | `--charcoal`     | `#1c1713` | dark sections, footer, body text     |
 
-Fonts are self-hosted (`src/fonts/Garet-*.woff2`) and declared as `@font-face`
-rules at the top of `src/styles/global.css` — no external font requests.
-Garet ships two free weights here: **Book (400)** for body/UI and **Heavy (800)**
-for display headings (including the hero title).
+Fonts are self-hosted and declared as `@font-face` rules at the top of
+`src/styles/global.css` — no external font requests.
+
+- **Garet** (`--font-display`) — geometric sans for headings. Two weights:
+  **Book (400)** and **Heavy (800)**.
+- **Aileron** (`--font-body`) — CC0 (public domain) neo-grotesque for body/UI.
+  Two weights: **Regular (400)** and **SemiBold (600)**.
 
 ---
 

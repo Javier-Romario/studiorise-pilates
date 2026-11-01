@@ -1,11 +1,11 @@
 /* ==========================================================================
    Studio Rise Pilates — global styles
    Reference aesthetic: Les Lignes Pilates (full-screen scroll parallax)
-   Type: Garet (geometric sans, self-hosted) — Book 400 + Heavy 800
+   Type: Garet (display) + Aileron (body) — self-hosted
    Palette: official Studio Rise — brown / almond / chalk / charcoal
    ========================================================================== */
 
-/* ---- Fonts (Garet — Type Forward Foundry, 100% free) ---------------------- */
+/* ---- Fonts ---------------------------------------------------------------- */
 @font-face {
   font-family: "Garet";
   src: url("../fonts/Garet-Book.woff2") format("woff2");
@@ -17,6 +17,20 @@
   font-family: "Garet";
   src: url("../fonts/Garet-Heavy.woff2") format("woff2");
   font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aileron";
+  src: url("../fonts/Aileron-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aileron";
+  src: url("../fonts/Aileron-SemiBold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -46,7 +60,7 @@
 
   /* type */
   --font-display: "Garet", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Garet", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Aileron", "Helvetica Neue", Arial, sans-serif;
 
   /* rhythm */
   --space-1: 0.5rem;
@@ -145,7 +159,7 @@ h3 {
   border-radius: 0;
   font-family: var(--font-body);
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   transition: background-color 0.4s, color 0.4s, border-color 0.4s,
@@ -188,7 +202,7 @@ h3 {
   align-items: center;
   gap: 0.5em;
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   padding-bottom: 0.4em;
@@ -236,7 +250,7 @@ h3 {
 .topbar__brand-mark {
   font-family: var(--font-body);
   font-size: 0.58rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   opacity: 0.72;
@@ -251,7 +265,7 @@ h3 {
 .topbar__link {
   position: relative;
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   opacity: 0.82;
@@ -284,7 +298,7 @@ h3 {
   padding: 0.85em 1.8em;
   border: 1px solid currentColor;
   border-radius: 0;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   transition: background-color 0.35s, color 0.35s;
@@ -758,7 +772,7 @@ h3 {
 .footer h4 {
   font-family: var(--font-body);
   font-size: 0.66rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   opacity: 0.52;

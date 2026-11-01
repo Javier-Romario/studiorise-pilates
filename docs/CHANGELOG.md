@@ -4,6 +4,17 @@ A record of everything built and changed on this project, in order. Latest first
 
 ---
 
+## 2026-11-01 — Aileron body font (CC0)
+
+- Added **Aileron** (Sora Sagano, CC0 public domain) as the body/UI font,
+  pairing it with Garet for display headings.
+- Self-hosted two weights: **Regular (400)** and **SemiBold (600)**
+  (`src/fonts/Aileron-*.woff2`).
+- Remapped body `font-weight: 500` → `600` so nothing renders faux-bold
+  (Aileron has no 500).
+
+---
+
 ## 2026-11-01 — Back to Garet (final)
 
 - Reverted to **Garet** (Book 400 + Heavy 800) after testing Poppins, Jost,
