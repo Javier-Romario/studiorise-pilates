@@ -15,7 +15,7 @@
     { "label": "Visit", "href": "#visit" }
   ],
   "hero": {
-    "eyebrow": "Reformer Pilates · Hinckley",
+    "eyebrow": "Reformer Pilates · Rugby & Hinckley",
     "titleLines": ["HERE. TO. RISE"],
     "subtitle": "A boutique Reformer Pilates studio where intimate classes of four and expert, personal coaching help you reconnect, realign and grow stronger.",
     "primaryCta": { "label": "Start your rise", "href": "#book" },
@@ -69,10 +69,11 @@
   "visit": {
     "id": "visit",
     "eyebrow": "Visit us",
-    "heading": "Our studio in Hinckley",
+    "heading": "Two studios. One community.",
     "subtitle": "Book through the Studio Rise app, or drop us an email — we'd love to welcome you.",
     "locations": [
-      { "name": "Hinckley", "address": ["43 Regent Street", "Hinckley, Leicestershire"] }
+      { "name": "Hinckley", "address": ["43 Regent Street", "Hinckley, Leicestershire"] },
+      { "name": "Rugby", "address": ["The Independent Quarter", "Regent Street, Rugby, CV21 2PS"] }
     ],
     "cta": { "label": "Email the studio", "href": "mailto:info@studiorisepilates.com" },
     "media": { "type": "image", "src": "/media/visit.jpg", "alt": "Reformer machines in a modern Pilates studio" }
@@ -88,7 +89,7 @@
     }
   },
   "footer": {
-    "blurb": "Reformer Pilates in Hinckley. Small classes, expert coaching, body and mind together.",
+    "blurb": "Reformer Pilates in Rugby & Hinckley. Small classes, expert coaching, body and mind together.",
     "hours": [
       { "label": "Classes", "text": "Seven days a week" },
       { "label": "First timers", "text": "Welcome anytime" }
