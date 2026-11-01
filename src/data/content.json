@@ -17,7 +17,7 @@
   "hero": {
     "eyebrow": "Reformer Pilates · Rugby & Hinckley",
     "titleLines": ["HERE. TO. RISE"],
-    "subtitle": "A boutique Reformer Pilates studio where intimate classes of four and expert, personal coaching help you reconnect, realign and grow stronger.",
+    "subtitle": "Boutique Reformer Pilates studios. Intimate Classes. Expert Coaching. Purposeful Movement. Your Progress is our purpose.",
     "primaryCta": { "label": "Start your rise", "href": "#book" },
     "secondaryCta": { "label": "Discover the method", "href": "#method" },
     "media": { "type": "video", "src": "/media/hero.mp4", "poster": "/media/hero-poster.jpg" }
